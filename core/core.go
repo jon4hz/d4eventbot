@@ -23,9 +23,12 @@ func New(d4Client *d4armory.Client) *Client {
 
 var (
 	tmplFuncs = template.FuncMap{
-		"formatTime":          formatTime,
-		"formatTimeDiff":      formatTimeDiff,
-		"nextHelltide":        nextHelltide,
+		"formatTime":     formatTime,
+		"formatTimeDiff": formatTimeDiff,
+		"nextHelltide": func(i int) string {
+			return formatTime(int(nextHelltide(i).Unix()))
+		},
+		"nextHelltideDiff":    nextHelltideDiff,
 		"nextHelltideRefresh": nextHelltideRefresh,
 		"helltideActive": func(i int) bool {
 			return helltideActive(time.Unix(int64(i), 0))
@@ -45,10 +48,7 @@ func init() {
 }
 
 func formatTime(i int) string {
-	t := time.Unix(int64(i), 0)
-	diff := timediff.TimeDiff(t)
-
-	return fmt.Sprintf("%s (%s)", t.Format("2006-01-02 15:04:05"), diff)
+	return time.Unix(int64(i), 0).Format("2006-01-02 15:04:05")
 }
 
 func formatTimeDiff(i int) string {
@@ -59,14 +59,19 @@ func formatTimeDiff(i int) string {
 
 var helltideDuration = time.Hour
 
-func nextHelltide(i int) string {
+func nextHelltide(i int) time.Time {
 	t := time.Unix(int64(i), 0)
 	if t.Before(time.Now()) {
 		// helltide starts every 2h 15min
 		nextHelltide := addHelltideCooldown(t)
-		return formatTime(int(nextHelltide.Unix()))
+		return nextHelltide
 	}
-	return formatTime(i)
+	return t
+}
+
+func nextHelltideDiff(i int) string {
+	t := nextHelltide(i)
+	return formatTimeDiff(int(t.Unix()))
 }
 
 func addHelltideCooldown(t time.Time) time.Time {

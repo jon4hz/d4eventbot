@@ -1,27 +1,31 @@
 <code>
 ☠️ Boss
 ——————
-When:      {{ formatTime .Boss.Expected }}
-Name:      {{ .Boss.Name }}
-Territory: {{ .Boss.Territory }}
-Zone:      {{ .Boss.Zone }}
+When:       {{ formatTime .Boss.Expected }}
+            {{ formatTimeDiff .Boss.Expected }}
+Name:       {{ .Boss.Name }}
+Territory:  {{ .Boss.Territory }}
+Zone:       {{ .Boss.Zone }}
 
 
 🔥 Helltide
 ——————
 {{- if helltideActive .Helltide.Timestamp }}
-When:     Active now!
-Started:  {{ formatTime .Helltide.Timestamp }}
+When:       Active now!
+Started:    {{ formatTime .Helltide.Timestamp }} 
+            {{ formatTimeDiff .Helltide.Timestamp }}
 {{- else }}
-When:      {{ nextHelltide .Helltide.Timestamp }}
+When:       {{ nextHelltideDiff .Helltide.Timestamp }}
+Date:       {{ nextHelltide .Helltide.Timestamp }}
 {{- end }}
-Refresh:   {{ nextHelltideRefresh .Helltide.Timestamp .Helltide.Refresh }}
-Zone:      {{ .Helltide.Zone }}
+Refresh:    {{ nextHelltideRefresh .Helltide.Timestamp .Helltide.Refresh }}
+Zone:       {{ .Helltide.Zone }}
 
 
 🔅 Legion
 ——————
-When:      {{ formatTime .Legion.Timestamp }}
-Territory: {{ .Legion.Territory }} 
-Zone:      {{ .Legion.Zone }}
+When:       {{ formatTime .Legion.Timestamp }}
+            {{ formatTimeDiff .Legion.Timestamp }}
+Territory:  {{ .Legion.Territory }} 
+Zone:       {{ .Legion.Zone }}
 </code>
