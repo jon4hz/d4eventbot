@@ -1,0 +1,20 @@
+☠️ Boss
+——————
+When:     {{ formatTime .Boss.Expected }}
+Name:     {{ .Boss.Name }}
+Territory: {{ .Boss.Territory }}
+Zone:      {{ .Boss.Zone }}
+
+
+🔥 Helltide
+——————
+When:     {{ nextHelltide .Helltide.Timestamp }}
+Refresh:  {{ nextHelltideRefresh .Helltide.Refresh }}
+Zone:      {{ .Helltide.Zone }}
+
+
+🔅 Legion
+——————
+When:     {{ formatTime .Legion.Timestamp }}
+Territory: {{ .Legion.Territory }} 
+Zone:      {{ .Legion.Zone }}
