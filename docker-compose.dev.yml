@@ -1,0 +1,9 @@
+---
+version: "3.8"
+services:
+  d4eventbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./config.yml:/app/config.yml:ro

@@ -1,0 +1,7 @@
+---
+version: "3.8"
+services:
+  d4eventbot:
+    image: ghcr.io/jon4hz/d4eventbot:latest
+    volumes:
+      - ./config.yml:/app/config.yml:ro
