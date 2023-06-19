@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/jon4hz/d4eventbot/config"
+	"github.com/jon4hz/d4eventbot/core"
 	"github.com/jon4hz/d4eventbot/d4armory"
 	"github.com/jon4hz/d4eventbot/telegram"
 )
@@ -14,7 +15,8 @@ func main() {
 		log.Fatalf("failed to load config: %s", err)
 	}
 
-	client := d4armory.New()
+	d4Client := d4armory.New()
+	client := core.New(d4Client)
 
 	tgb, err := telegram.New(cfg.Token, client)
 	if err != nil {

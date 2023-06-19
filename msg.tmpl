@@ -1,20 +1,27 @@
+<code>
 ☠️ Boss
 ——————
-When:     {{ formatTime .Boss.Expected }}
-Name:     {{ .Boss.Name }}
+When:      {{ formatTime .Boss.Expected }}
+Name:      {{ .Boss.Name }}
 Territory: {{ .Boss.Territory }}
 Zone:      {{ .Boss.Zone }}
 
 
 🔥 Helltide
 ——————
-When:     {{ nextHelltide .Helltide.Timestamp }}
-Refresh:  {{ nextHelltideRefresh .Helltide.Refresh }}
+{{- if helltideActive .Helltide.Timestamp }}
+When:     Active now!
+Started:  {{ formatTime .Helltide.Timestamp }}
+{{- else }}
+When:      {{ nextHelltide .Helltide.Timestamp }}
+{{- end }}
+Refresh:   {{ nextHelltideRefresh .Helltide.Timestamp .Helltide.Refresh }}
 Zone:      {{ .Helltide.Zone }}
 
 
 🔅 Legion
 ——————
-When:     {{ formatTime .Legion.Timestamp }}
+When:      {{ formatTime .Legion.Timestamp }}
 Territory: {{ .Legion.Territory }} 
 Zone:      {{ .Legion.Zone }}
+</code>
