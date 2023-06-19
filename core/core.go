@@ -78,6 +78,11 @@ func nextHelltideRefresh(helltide, refresh int) string {
 	if addHelltideCooldown(tHell).Minute() == 0 {
 		return "None"
 	}
+
+	if helltideActive(tHell) && refresh == 0 {
+		return "None"
+	}
+
 	tRef := time.Unix(int64(refresh), 0)
 	next := addHelltideCooldown(tRef)
 	return formatTime(int(next.Truncate(time.Hour).Unix()))
