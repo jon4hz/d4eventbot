@@ -131,7 +131,7 @@ func mapZoneName(z string) string {
 }
 
 func (c *Client) GetMessage() (string, error) {
-	cachedMsg := c.cache.Get("msg")
+	cachedMsg := c.cache.Get("msg", ttlcache.WithDisableTouchOnHit[string, string]())
 	if cachedMsg != nil && !cachedMsg.IsExpired() && cachedMsg.Value() != "" {
 		return cachedMsg.Value(), nil
 	}

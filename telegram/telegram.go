@@ -52,7 +52,7 @@ func (c *Client) Run() error {
 	dispatcher.AddHandler(handlers.NewCallback(callbackquery.Equal("refresh"), c.refreshMessage))
 
 	err := updater.StartPolling(c.bot, &ext.PollingOpts{
-		DropPendingUpdates: true,
+		DropPendingUpdates: false,
 		GetUpdatesOpts: gotgbot.GetUpdatesOpts{
 			Timeout: 9,
 			RequestOpts: &gotgbot.RequestOpts{
@@ -105,6 +105,11 @@ func (c *Client) refreshMessage(b *gotgbot.Bot, ctx *ext.Context) error {
 
 	_, _, err = cb.Message.EditText(b, "<code>"+msg+"</code>", &gotgbot.EditMessageTextOpts{
 		ParseMode: "html",
+		ReplyMarkup: gotgbot.InlineKeyboardMarkup{
+			InlineKeyboard: [][]gotgbot.InlineKeyboardButton{
+				{{Text: "  Refresh", CallbackData: "refresh"}},
+			},
+		},
 	})
 	if err != nil {
 		return fmt.Errorf("failed to edit message: %w", err)
