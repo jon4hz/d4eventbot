@@ -12,4 +12,4 @@ FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/d4eventbot .
 COPY ./msg.tmpl .
-CMD ["./d4eventbot"]
+CMD ["./d4eventbot", "bot"]
