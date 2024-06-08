@@ -3,11 +3,10 @@ module github.com/jon4hz/d4eventbot
 go 1.20
 
 require (
-	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.27
+	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.20
 	github.com/charmbracelet/bubbles v0.16.1
 	github.com/charmbracelet/bubbletea v0.24.1
 	github.com/charmbracelet/lipgloss v0.7.1
-	github.com/jellydator/ttlcache/v3 v3.2.0
 	github.com/mergestat/timediff v0.0.3
 	github.com/spf13/cobra v1.7.0
 	github.com/stretchr/testify v1.8.4
@@ -19,6 +18,7 @@ require (
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/jellydator/ttlcache/v3 v3.2.0 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.18 // indirect
