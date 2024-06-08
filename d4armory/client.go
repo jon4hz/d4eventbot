@@ -91,3 +91,11 @@ func (c *Client) GetRecent(ctx context.Context) (*RecentEvents, error) {
 	}
 	return &res, nil
 }
+
+var ZoneMap = map[string]string{
+	"step": "Dry Steppes",
+	"hawe": "Hawezar",
+	"frac": "Fractured Peaks",
+	"kehj": "Kehjistan",
+	"scos": "Scosglen", // guessed
+}

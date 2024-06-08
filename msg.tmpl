@@ -1,11 +1,10 @@
-<code>
 ☠️ Boss
 ——————
 When:       {{ formatTime .Boss.Expected }}
             {{ formatTimeDiff .Boss.Expected }}
 Name:       {{ .Boss.Name }}
 Territory:  {{ .Boss.Territory }}
-Zone:       {{ .Boss.Zone }}
+Zone:       {{ .Boss.Zone | mapZoneName }}
 
 
 🔥 Helltide
@@ -15,11 +14,12 @@ When:       Active now!
 Started:    {{ formatTime .Helltide.Timestamp }} 
             {{ formatTimeDiff .Helltide.Timestamp }}
 {{- else }}
-When:       {{ nextHelltideDiff .Helltide.Timestamp }}
-Date:       {{ nextHelltide .Helltide.Timestamp }}
+When:       {{ nextHelltide .Helltide.Timestamp }}
+            {{ nextHelltideDiff .Helltide.Timestamp }}
 {{- end }}
 Refresh:    {{ nextHelltideRefresh .Helltide.Timestamp .Helltide.Refresh }}
-Zone:       {{ .Helltide.Zone }}
+            {{ nextHelltideRefreshDiff .Helltide.Timestamp .Helltide.Refresh }}
+Zone:       {{ .Helltide.Zone | mapZoneName }}
 
 
 🔅 Legion
@@ -27,5 +27,4 @@ Zone:       {{ .Helltide.Zone }}
 When:       {{ formatTime .Legion.Timestamp }}
             {{ formatTimeDiff .Legion.Timestamp }}
 Territory:  {{ .Legion.Territory }} 
-Zone:       {{ .Legion.Zone }}
-</code>
+Zone:       {{ .Legion.Zone | mapZoneName }}

@@ -9,6 +9,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
+	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/callbackquery"
 	"github.com/jon4hz/d4eventbot/core"
 )
 
@@ -48,6 +49,7 @@ func (c *Client) Run() error {
 	dispatcher := updater.Dispatcher
 
 	dispatcher.AddHandler(handlers.NewCommand("start", c.startHandler))
+	dispatcher.AddHandler(handlers.NewCallback(callbackquery.Equal("refresh"), c.refreshMessage))
 
 	err := updater.StartPolling(c.bot, &ext.PollingOpts{
 		DropPendingUpdates: true,
@@ -73,11 +75,40 @@ func (c *Client) startHandler(b *gotgbot.Bot, ctx *ext.Context) error {
 		return err
 	}
 
-	_, err = ctx.EffectiveChat.SendMessage(b, msg, &gotgbot.SendMessageOpts{
+	_, err = ctx.EffectiveChat.SendMessage(b, "<code>"+msg+"</code>", &gotgbot.SendMessageOpts{
 		ParseMode: "html",
+		ReplyMarkup: gotgbot.InlineKeyboardMarkup{
+			InlineKeyboard: [][]gotgbot.InlineKeyboardButton{
+				{{Text: "  Refresh", CallbackData: "refresh"}},
+			},
+		},
 	})
 	if err != nil {
 		return fmt.Errorf("failed to send start message: %w", err)
 	}
+	return nil
+}
+
+func (c *Client) refreshMessage(b *gotgbot.Bot, ctx *ext.Context) error {
+	cb := ctx.Update.CallbackQuery
+	_, err := cb.Answer(b, &gotgbot.AnswerCallbackQueryOpts{
+		Text: "Refreshing...",
+	})
+	if err != nil {
+		return fmt.Errorf("failed to answer callback query: %w", err)
+	}
+
+	msg, err := c.core.GetMessage()
+	if err != nil {
+		return err
+	}
+
+	_, _, err = cb.Message.EditText(b, "<code>"+msg+"</code>", &gotgbot.EditMessageTextOpts{
+		ParseMode: "html",
+	})
+	if err != nil {
+		return fmt.Errorf("failed to edit message: %w", err)
+	}
+
 	return nil
 }

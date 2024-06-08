@@ -1,28 +1,13 @@
 package main
 
 import (
-	"log"
+	"os"
 
-	"github.com/jon4hz/d4eventbot/config"
-	"github.com/jon4hz/d4eventbot/core"
-	"github.com/jon4hz/d4eventbot/d4armory"
-	"github.com/jon4hz/d4eventbot/telegram"
+	"github.com/jon4hz/d4eventbot/cmd"
 )
 
 func main() {
-	cfg, err := config.New()
-	if err != nil {
-		log.Fatalf("failed to load config: %s", err)
-	}
-
-	d4Client := d4armory.New()
-	client := core.New(d4Client)
-
-	tgb, err := telegram.New(cfg.Token, client)
-	if err != nil {
-		log.Fatalf("failed to create telegram bot: %s", err)
-	}
-	if err := tgb.Run(); err != nil {
-		log.Fatalf("failed to run telegram bot: %s", err)
+	if err := cmd.Execute(); err != nil {
+		os.Exit(0)
 	}
 }
