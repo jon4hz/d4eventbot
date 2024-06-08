@@ -75,13 +75,9 @@ func (c *Client) startHandler(b *gotgbot.Bot, ctx *ext.Context) error {
 		return err
 	}
 
-	_, err = ctx.EffectiveChat.SendMessage(b, "<code>"+msg+"</code>", &gotgbot.SendMessageOpts{
-		ParseMode: "html",
-		ReplyMarkup: gotgbot.InlineKeyboardMarkup{
-			InlineKeyboard: [][]gotgbot.InlineKeyboardButton{
-				{{Text: "  Refresh", CallbackData: "refresh"}},
-			},
-		},
+	_, err = ctx.EffectiveChat.SendMessage(b, buildMsgText(msg), &gotgbot.SendMessageOpts{
+		ParseMode:   "html",
+		ReplyMarkup: refreshKeyboard(),
 	})
 	if err != nil {
 		return fmt.Errorf("failed to send start message: %w", err)
@@ -103,17 +99,29 @@ func (c *Client) refreshMessage(b *gotgbot.Bot, ctx *ext.Context) error {
 		return err
 	}
 
-	_, _, err = cb.Message.EditText(b, "<code>"+msg+"</code>", &gotgbot.EditMessageTextOpts{
-		ParseMode: "html",
-		ReplyMarkup: gotgbot.InlineKeyboardMarkup{
-			InlineKeyboard: [][]gotgbot.InlineKeyboardButton{
-				{{Text: "  Refresh", CallbackData: "refresh"}},
-			},
-		},
+	if cb.Message.Text == buildMsgText(msg) {
+		return nil
+	}
+
+	_, _, err = cb.Message.EditText(b, buildMsgText(msg), &gotgbot.EditMessageTextOpts{
+		ParseMode:   "html",
+		ReplyMarkup: refreshKeyboard(),
 	})
 	if err != nil {
 		return fmt.Errorf("failed to edit message: %w", err)
 	}
 
 	return nil
+}
+
+func buildMsgText(m string) string {
+	return fmt.Sprintf("<code>%s</code>", m)
+}
+
+func refreshKeyboard() gotgbot.InlineKeyboardMarkup {
+	return gotgbot.InlineKeyboardMarkup{
+		InlineKeyboard: [][]gotgbot.InlineKeyboardButton{
+			{{Text: "  Refresh", CallbackData: "refresh"}},
+		},
+	}
 }
