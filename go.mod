@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.20
-	github.com/charmbracelet/bubbles v0.16.1
+	github.com/charmbracelet/bubbles v0.18.0
 	github.com/charmbracelet/bubbletea v0.26.4
 	github.com/charmbracelet/lipgloss v0.11.0
 	github.com/jellydator/ttlcache/v3 v3.2.0
