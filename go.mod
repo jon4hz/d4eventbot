@@ -9,7 +9,7 @@ require (
 	github.com/charmbracelet/lipgloss v0.11.0
 	github.com/jellydator/ttlcache/v3 v3.2.0
 	github.com/mergestat/timediff v0.0.3
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 	github.com/stretchr/testify v1.8.4
 	gopkg.in/yaml.v3 v3.0.1
 )
