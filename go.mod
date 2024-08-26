@@ -7,7 +7,7 @@ require (
 	github.com/charmbracelet/bubbles v0.18.0
 	github.com/charmbracelet/bubbletea v0.27.0
 	github.com/charmbracelet/lipgloss v0.12.1
-	github.com/jellydator/ttlcache/v3 v3.2.0
+	github.com/jellydator/ttlcache/v3 v3.2.1
 	github.com/mergestat/timediff v0.0.3
 	github.com/spf13/cobra v1.8.1
 	github.com/stretchr/testify v1.9.0
