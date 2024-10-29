@@ -6,7 +6,7 @@ require (
 	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.20
 	github.com/charmbracelet/bubbles v0.20.0
 	github.com/charmbracelet/bubbletea v1.1.2
-	github.com/charmbracelet/lipgloss v0.13.0
+	github.com/charmbracelet/lipgloss v0.13.1
 	github.com/jellydator/ttlcache/v3 v3.3.0
 	github.com/mergestat/timediff v0.0.3
 	github.com/spf13/cobra v1.8.1
