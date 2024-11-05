@@ -55,9 +55,6 @@ var (
 		"helltideActive": func(i int) bool {
 			return helltideActive(time.Unix(int64(i), 0))
 		},
-		"mapZoneName": func(z string) string {
-			return mapZoneName(z)
-		},
 	}
 	tmpl *template.Template
 )
@@ -121,13 +118,6 @@ func nextHelltideRefresh(helltide, refresh int) time.Time {
 
 func helltideActive(t time.Time) bool {
 	return t.Sub(time.Now().Add(-helltideDuration)) > 0
-}
-
-func mapZoneName(z string) string {
-	if zone, ok := d4armory.ZoneMap[z]; ok {
-		return zone
-	}
-	return z
 }
 
 func (c *Client) GetMessage() (string, error) {

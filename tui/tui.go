@@ -87,6 +87,9 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m Model) View() string {
+	if m.err != nil {
+		return docStyle.Render(m.err.Error())
+	}
 	switch m.state {
 	case stateLoading:
 		return docStyle.Render(m.spinner.View() + "  Loading...")

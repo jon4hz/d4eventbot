@@ -4,7 +4,7 @@ When:       {{ formatTime .Boss.Expected }}
             {{ formatTimeDiff .Boss.Expected }}
 Name:       {{ .Boss.Name }}
 Territory:  {{ .Boss.Territory }}
-Zone:       {{ .Boss.Zone | mapZoneName }}
+Zone:       {{ .Boss.Zone }}
 
 
 🔥 Helltide
@@ -19,7 +19,7 @@ When:       {{ nextHelltide .Helltide.Timestamp }}
 {{- end }}
 Refresh:    {{ nextHelltideRefresh .Helltide.Timestamp .Helltide.Refresh }}
             {{ nextHelltideRefreshDiff .Helltide.Timestamp .Helltide.Refresh }}
-Zone:       {{ .Helltide.Zone | mapZoneName }}
+Zone:       {{ .Helltide.Zone }}
 
 
 🔅 Legion
@@ -27,4 +27,4 @@ Zone:       {{ .Helltide.Zone | mapZoneName }}
 When:       {{ formatTime .Legion.Timestamp }}
             {{ formatTimeDiff .Legion.Timestamp }}
 Territory:  {{ .Legion.Territory }} 
-Zone:       {{ .Legion.Zone | mapZoneName }}
+Zone:       {{ .Legion.Zone }}

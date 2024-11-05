@@ -11,7 +11,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "gabriel",
+	Use:   "d4eventbot",
 	Short: "Tracking Diablo 4 events",
 	Run:   rootHandler,
 }
@@ -25,11 +25,6 @@ func init() {
 }
 
 func rootHandler(cmd *cobra.Command, args []string) {
-	/* cfg, err := config.New()
-	if err != nil {
-		log.Fatalf("failed to load config: %s", err)
-	} */
-
 	d4Client := d4armory.New()
 	client := core.New(d4Client)
 

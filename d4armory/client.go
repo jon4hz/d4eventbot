@@ -60,7 +60,7 @@ func (c *Client) doRequest(ctx context.Context, endpoint, method string, expRes 
 	}
 }
 
-type RecentEvents struct {
+/* type RecentEvents struct {
 	Boss struct {
 		Name             string `json:"name"`
 		ExpectedName     string `json:"expectedName"`
@@ -81,21 +81,21 @@ type RecentEvents struct {
 		Territory string `json:"territory"`
 		Zone      string `json:"zone"`
 	} `json:"legion"`
+} */
+
+type Event struct {
+	Event      string `json:"e"`
+	Name       string `json:"n"`
+	Timestampt int    `json:"ts"`
+	Territory  string `json:"t"`
+	Zone       string `json:"z"`
 }
 
-func (c *Client) GetRecent(ctx context.Context) (*RecentEvents, error) {
-	var res RecentEvents
-	_, err := c.doRequest(ctx, "/events/recent", http.MethodGet, &res)
+func (c *Client) GetRecent(ctx context.Context) ([]Event, error) {
+	var res []Event
+	_, err := c.doRequest(ctx, "/events.json", http.MethodGet, &res)
 	if err != nil {
 		return nil, err
 	}
-	return &res, nil
-}
-
-var ZoneMap = map[string]string{
-	"step": "Dry Steppes",
-	"hawe": "Hawezar",
-	"frac": "Fractured Peaks",
-	"kehj": "Kehjistan",
-	"scos": "Scosglen", // guessed
+	return res, nil
 }
