@@ -3,7 +3,7 @@ module github.com/jon4hz/d4eventbot
 go 1.20
 
 require (
-	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.20
+	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.30
 	github.com/charmbracelet/bubbles v0.20.0
 	github.com/charmbracelet/bubbletea v1.2.4
 	github.com/charmbracelet/lipgloss v1.0.0

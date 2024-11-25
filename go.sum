@@ -1,5 +1,5 @@
-github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.20 h1:LgJ2DwqvtvvUOMS2q7IdeaLS1olDUQqDZ4GZliQZAPM=
-github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.20/go.mod h1:r815fYWTudnU9JhtsJAxUtuV7QrSgKpChJkfTSMFpfg=
+github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.30 h1:kPFkEzqg3+5gu077Zrg+24d0rO0Iwdx/ZUUHFFprfsc=
+github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.30/go.mod h1:kL1v4iIjlalwm3gCYGvF4NLa3hs+aKEfRkNJvj4aoDU=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1 h1:HwpRHbFMcZLEVr42D4p7XBqjyuxQH5SMiErDT4WkJ2k=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1/go.mod h1:uYgXzlJ7ZpABp8OJ+exZzJJhRNQ2ASbcXHWsFqH8hp8=
 github.com/charmbracelet/bubbles v0.20.0 h1:jSZu6qD8cRQ6k9OMfR1WlM+ruM8fkPWkHvQWD9LIutE=
