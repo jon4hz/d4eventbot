@@ -1,9 +1,9 @@
 module github.com/jon4hz/d4eventbot
 
-go 1.20
+go 1.22
 
 require (
-	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.20
+	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.33
 	github.com/charmbracelet/bubbles v0.20.0
 	github.com/charmbracelet/bubbletea v1.3.4
 	github.com/charmbracelet/lipgloss v1.1.0
